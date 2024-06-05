@@ -1,0 +1,11 @@
+.loginShell{
+    height: 100%;
+    width: 100%;
+    margin:0%;
+    padding:0%;
+    position:relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F9F9EF;
+}

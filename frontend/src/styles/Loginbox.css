@@ -1,0 +1,109 @@
+.loginBox {
+    height: 55%;
+    width: 60%;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: white;
+}
+
+.signUpForm,
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    transition: opacity 0.5s ease-in-out;
+    user-select: none;
+    gap: 6%;
+}
+
+.signUpForm>input,
+.loginForm>input {
+    border: none;
+    outline: none;
+    height: 12%;
+    width: 70%;
+    border: 1px solid grey;
+    outline: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 0%;
+}
+
+.signUpForm > input::placeholder,
+.loginForm > input::placeholder {
+  text-align: center;
+}
+
+.signUpForm>button,.loginForm>button{
+    border: none;
+    outline: none;
+    height: 12%;
+    width: 70%;
+    border-radius: 10px;
+    background-color: #F9F9EF;
+    color: grey;
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.redDiv {
+    height: 100%;
+    width: 50%;
+    background-color: #2A343E;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    transition: left 0.8s, right 0.8s, border-radius 0.8s;
+    user-select: none;
+}
+
+.redDiv>h1 {
+    color: white;
+    font-size: 2.3rem;
+    font-style: italic;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.redDiv>h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 20px;
+}
+
+.redDiv>p {
+    color: white;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.hidden {
+    opacity: 0;
+}

@@ -1,0 +1,130 @@
+.chatList {
+    height: 100%;
+    width: 20%;
+    position: absolute;
+    left: 5%;
+    background-color: #2A343E;
+}
+
+.conversations {
+    height: 10%;
+    width: 100%;
+    user-select: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid grey;
+}
+
+/* .conversations::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    border-bottom: 1px solid grey;
+} */
+
+.conversations > h5 {
+    font-family: "Open Sans", sans-serif;
+    color: azure;
+    font-size: 1.15rem;
+    position: absolute;
+    left: 4.35%;
+}
+
+.chatListbottomBar {
+    height: 90%;
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.conversationsList {
+    height: 85%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+}
+
+/* Style the scrollbar */
+.conversationsList::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+}
+
+/* Track */
+.conversationsList::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the track */
+}
+
+/* Handle */
+.conversationsList::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+}
+
+/* Handle on hover */
+.conversationsList::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar handle on hover */
+}
+
+
+.chatPanel {
+    min-height: 14%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    font-family: "Open Sans", sans-serif;
+    color: azure;
+    font-size: 0.85rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.chatPanel::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    width: 90%;
+    border-bottom: 1px solid grey;
+}
+
+.chatPanel > img {
+    height: 40px;
+    width: 40px;
+    margin-left: 3%;
+}
+
+.chatPanel:hover{
+    background-color: #3A4750;
+    transition: background-color 0.3s ease;
+}
+
+.userInfo {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: "Open Sans", sans-serif;
+    color: azure;
+    font-size: 0.85rem;
+    border-top: 1px solid grey;
+    position:relative;
+    user-select: none;
+}
+
+.selfProfileIcon{
+    height: 40px;
+    width: 40px;
+    margin-left: 3%;
+}

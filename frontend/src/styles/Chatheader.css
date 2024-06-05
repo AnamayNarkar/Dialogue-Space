@@ -1,0 +1,23 @@
+.chatHeader {
+    height: 10%;
+    width: 100%;
+    user-select: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:2%;
+    position: relative;
+    border-bottom: 1px solid grey;
+}
+
+.chatHeader>img{
+    height:50px;
+    width:50px;
+    margin-left:2%;
+}
+
+.chatHeader>h4{
+    font-family: "Open Sans", sans-serif;
+    color: black;
+    font-size: 1.15rem;
+}

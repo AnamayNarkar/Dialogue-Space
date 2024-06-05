@@ -1,0 +1,44 @@
+.sideBar{
+    height:100%;
+    width: 5%;
+    position: absolute;
+    left:0%;
+    background-color: #212529;
+}
+
+.sideBarBottomBar{
+    height:90%;
+    width: 100%;
+    position: absolute;
+    bottom:0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:5%;
+}
+
+.addUserIconButton{
+    cursor: pointer;
+    height:37px;
+    width:37px;
+    background-color: grey;
+    border: none;
+    border-radius: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:21%;
+    user-select: none;
+}
+
+.addUserIcon{
+    height: 75%;
+    width: 75%;
+}
+
+.settingsIcon{
+    height: 37px;
+    width: 37px;
+    cursor: pointer;
+    user-select: none;
+}

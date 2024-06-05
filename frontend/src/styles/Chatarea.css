@@ -1,0 +1,67 @@
+.chatArea {
+    height: 82%;
+    width: 100%;
+    margin-bottom:0%;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+    justify-content:flex-start;
+}
+
+.chatArea::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+}
+
+/* Track */
+.chatArea::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the track */
+}
+
+/* Handle */
+.chatArea::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar handle */
+}
+
+/* Handle on hover */
+.chatArea::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar handle on hover */
+}
+
+.userMessage {
+    align-self: flex-end;
+    margin-right: 2%;
+}
+
+.contactMessage {
+    align-self: flex-start;
+    margin-left: 2%;
+}
+
+.chatBubble {
+    min-height: 9%;
+    min-width: 2%;
+    max-height: auto;
+    max-width: 42%;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    box-sizing: border-box; /* Ensures padding is included in the element's total width */
+    overflow-wrap: break-word; 
+    word-wrap: break-word;     
+    word-break: break-word;    
+}
+
+.chatBubble > p {
+    font-size: 1.096rem;
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
+    word-wrap: break-word;     
+    word-break: break-word;    
+    overflow-wrap: break-word; 
+}
