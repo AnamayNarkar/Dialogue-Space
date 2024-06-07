@@ -51,6 +51,9 @@ function Loginbox(props) {
     try {
       const response = await axios.post("/login", loginData); 
       console.log(response.data);
+      if(response.data){
+        props.setIsLoggedIn(true);
+      }
     } catch (error) {
       console.error("Error:", error);
     }

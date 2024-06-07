@@ -9,8 +9,11 @@ app.use(cors());
 
 app.post('/login', (req, res) => {
   console.log("Login request received");
-  console.log(req.body);
-  res.send("Login request received"); //sample response
+  if(req.body.usernameoremail === "admin" && req.body.password === "admin") {
+    res.send(true)
+  }else{
+    res.send(false)
+  }
 });
 
 app.post('/signup', (req, res) => {

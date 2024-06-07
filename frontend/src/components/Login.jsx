@@ -5,9 +5,8 @@ import Loginbox from './Loginbox.jsx'
 function Login(props) {
   return (
     <div className='loginShell'>
-        <Loginbox isLoggedIn={props.isLoggedIn}/>
+        <Loginbox setIsLoggedIn={props.setIsLoggedIn}/>
     </div>
   )
 }
-s
 export default Login
