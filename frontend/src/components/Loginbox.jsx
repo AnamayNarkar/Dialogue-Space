@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import axios library
 import "../styles/Loginbox.css";
 
-function Loginbox() {
+function Loginbox(props) {
   const [showSignUp, setShowSignUp] = useState(false);
   const redDivStyles = {
     left: showSignUp ? "50%" : "0",
@@ -35,13 +36,25 @@ function Loginbox() {
     console.log(signUpData);
   };
 
-  const handleSignUpSubmit = (event) => {
+  async function handleSignUpSubmit(event) {
     event.preventDefault();
-  };
+    try {
+      const response = await axios.post("/signup", signUpData);
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 
-  const handleLoginSubmit = (event) => {
+  async function handleLoginSubmit(event) {
     event.preventDefault();
-  };
+    try {
+      const response = await axios.post("/login", loginData); 
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 
   return (
     <div className="loginBox">
