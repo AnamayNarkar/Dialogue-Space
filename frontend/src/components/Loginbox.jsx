@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios library
+import axios from "axios";
 import "../styles/Loginbox.css";
 
 function Loginbox(props) {
 
   function setUserData(userData) {
     props.setUserData(userData);
+    localStorage.setItem("userData", JSON.stringify(userData));
   }
 
   const [showSignUp, setShowSignUp] = useState(false);
