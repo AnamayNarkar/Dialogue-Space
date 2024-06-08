@@ -13,25 +13,37 @@ async function signUp(req, res) {
         });
 
         await newUser.save();
-        res.send("User saved successfully");
+        res.send({
+            message: "User saved successfully"
+        });
     } catch (error) {
-        res.send("error creating user");
+        res.send({
+            message: "error creating user"
+        });
     }
 }
 
-async function login(req,res) {
+async function login(req, res) {
     const { usernameoremail, password } = req.body;
     console.log(req.body);
 
     const user = await User.findOne({ $or: [{ username: usernameoremail }, { email: usernameoremail }] });
     if (user) {
         if (user.password === password) {
-            res.send("Login successful");
+            const userData = user;
+            res.send({
+                data: userData,
+                message: "Login successful"
+            });
         } else {
-            res.send("Incorrect password");
+            res.send({
+                message: "Incorrect password"
+            });
         }
     } else {
-        res.send("User not found");
+        res.send({
+            message: "User not found"
+        });
     }
 }
 

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import chatsWithFriendsSchema from "./chatsWithFriendsSchema.js";
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -19,7 +20,16 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
-})
+    },
+    friendList: {
+        type: [String],
+        default: [],
+    },
+    friendRequestsReceived: {
+        type: [String],
+        default: [],
+    },
+    chatsWithFriends: [chatsWithFriendsSchema],
+});
 
 export default userSchema;

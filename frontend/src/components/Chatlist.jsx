@@ -18,9 +18,9 @@ function Chatlist(props) {
         <div className="conversationsList">
           {props.friends.map((friend) => {
             return (
-              <div key={friend.id} className="chatPanel" onClick={openChat}>
+              <div key={friend} className="chatPanel" onClick={openChat}>
                 <img src="/assets/defaultProfileIcon.png" alt="Profile Icon" />
-                <h4>{friend.userName}</h4>
+                <h4>{friend}</h4>
               </div>
             );
           })}

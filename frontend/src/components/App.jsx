@@ -3,17 +3,16 @@ import '../styles/App.css'
 import Sidebar from './Sidebar'
 import Chatlist from './Chatlist'
 import Chatboard from './Chatboard'
-import {userData} from '../userData.js'
 
-function App() {
+function App(props) {
 
   const [openChat, setOpenChat] = useState('');
 
   return (
     <div className='appShell'>
       <Sidebar />
-      <Chatlist currentUser={userData[0].userName} friends={userData[0].friends} setOpenChat={setOpenChat}/>
-      <Chatboard currentUser={userData[0].userName} userChats={userData[0].chatsWithFriends} openChat={openChat}/>
+      <Chatlist currentUser={props.userData.username} friends={props.userData.friendList} setOpenChat={setOpenChat}/>
+      <Chatboard currentUser={props.userData.username} userChats={props.userData.chatsWithFriends} openChat={openChat}/>
     </div>
   )
 }

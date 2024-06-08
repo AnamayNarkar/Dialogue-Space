@@ -3,6 +3,12 @@ import axios from "axios"; // Import axios library
 import "../styles/Loginbox.css";
 
 function Loginbox(props) {
+
+  function setUserData(userData){
+    props.setUserData(userData);
+    console.log(userData);
+  }
+
   const [showSignUp, setShowSignUp] = useState(false);
   const redDivStyles = {
     left: showSignUp ? "50%" : "0",
@@ -40,8 +46,8 @@ function Loginbox(props) {
     event.preventDefault();
     try {
       const response = await axios.post("/signup", signUpData); 
-      console.log(response.data);
-      if(response.data=="User saved successfully"){
+      console.log(response.data.message);
+      if(response.data.message=="User saved successfully"){
         props.setIsLoggedIn(true);
       }
     } catch (error) {
@@ -53,9 +59,9 @@ function Loginbox(props) {
     event.preventDefault();
     try {
       const response = await axios.post("/login", loginData); 
-      console.log(response.data);
-      if(response.data=="Login successful"){
+      if(response.data.message=="Login successful"){
         props.setIsLoggedIn(true);
+        setUserData(response.data.data);
       }
     } catch (error) {
       console.error("Error:", error);
