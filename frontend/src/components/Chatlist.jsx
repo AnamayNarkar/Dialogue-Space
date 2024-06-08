@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/Chatlist.css";
-import { chatPanels } from "../data.js";
 
 function Chatlist(props) {
   function openChat(event) {

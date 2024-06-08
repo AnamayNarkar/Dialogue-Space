@@ -48,6 +48,7 @@ io.on('connection', (socket) => {
         break;
       }
     }
+    console.log(usersAndSockets);
   });
 });
 

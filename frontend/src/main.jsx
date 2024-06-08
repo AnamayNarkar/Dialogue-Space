@@ -1,18 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import App from './components/App.jsx';
-import Login from './components/Login.jsx';
+
+import axios from 'axios'
 import io from 'socket.io-client';
 
-const Root = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") ?"true" : "false")
+import App from './components/App.jsx';
+import Login from './components/Login.jsx';
+
+function Root() {
+
   const [userData, setUserData] = useState(localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : {});
+  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") ? true : false);
 
-  const socket = io.connect('http://localhost:3000');
+  useEffect(() => {
+    const socket = io.connect('http://localhost:3000');
 
-  socket.on('connect', () => {
-    console.log("Connected to socket server");
+    console.log("Connected to server through socket.io!");
 
     socket.on('newMessage', (messageObj) => {
 
@@ -28,14 +32,37 @@ const Root = () => {
       });
     });
 
-  });
-
-  useEffect(() => {
+    // Emit new user when userData changes
     if (userData && userData.username) {
       socket.emit('newUser', userData.username);
-      console.log(userData.username);
     }
-  }, [userData, socket]);
+
+    return () => {
+      // Disconnect socket when user leaves
+      socket.disconnect();
+    };
+  }, [userData]);
+
+  // Get latest data from server when user logs in or reloads
+  useEffect(() => {
+    async function fetchData() {
+      if (userData && userData.username) {
+        const userDataToSend = {
+          username: userData.username,
+          email: userData.email
+        };
+
+        try {
+          const response = await axios.get('/getLatestUserData', { params: userDataToSend });
+          localStorage.setItem('userData', JSON.stringify(response.data));
+          setUserData(response.data);
+        } catch (error) {
+          console.error('Error fetching latest user data:', error);
+        }
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -45,7 +72,7 @@ const Root = () => {
         </Routes>
       </React.StrictMode>
     </BrowserRouter>
-  );
+  )
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<Root />);
