@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import axios from 'axios'
+import axios from 'axios';
 import io from 'socket.io-client';
 
 import App from './components/App.jsx';
@@ -13,9 +13,9 @@ function Root() {
   const [userData, setUserData] = useState(localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : {});
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") ? true : false);
 
-  useEffect(() => {
-    const socket = io.connect('http://localhost:3000');
+  const socket = io.connect('http://localhost:3000');
 
+  socket.on('connect', () => {
     console.log("Connected to server through socket.io!");
 
     socket.on('newMessage', (messageObj) => {
@@ -31,19 +31,16 @@ function Root() {
         return newUserData;
       });
     });
+  });
 
-    // Emit new user when userData changes
+  // useEffect to send every new user to server
+  useEffect(() => {
     if (userData && userData.username) {
       socket.emit('newUser', userData.username);
     }
+  }, [socket]);
 
-    return () => {
-      // Disconnect socket when user leaves
-      socket.disconnect();
-    };
-  }, [userData]);
-
-  // Get latest data from server when user logs in or reloads
+  // useEffect to get latest user data from server every time the client reloads
   useEffect(() => {
     async function fetchData() {
       if (userData && userData.username) {
@@ -72,7 +69,7 @@ function Root() {
         </Routes>
       </React.StrictMode>
     </BrowserRouter>
-  )
+  );
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<Root />);
