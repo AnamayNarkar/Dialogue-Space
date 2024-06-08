@@ -4,9 +4,8 @@ import "../styles/Loginbox.css";
 
 function Loginbox(props) {
 
-  function setUserData(userData){
+  function setUserData(userData) {
     props.setUserData(userData);
-    console.log(userData);
   }
 
   const [showSignUp, setShowSignUp] = useState(false);
@@ -34,20 +33,17 @@ function Loginbox(props) {
 
   const handleLoginChange = (event) => {
     setLoginData({ ...loginData, [event.target.name]: event.target.value });
-    console.log(loginData);
   };
 
   const handleSignUpChange = (event) => {
     setSignUpData({ ...signUpData, [event.target.name]: event.target.value });
-    console.log(signUpData);
   };
 
   async function handleSignUpSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.post("/signup", signUpData); 
-      console.log(response.data.message);
-      if(response.data.message=="User saved successfully"){
+      const response = await axios.post("/signup", signUpData);
+      if (response.data.message == "User saved successfully") {
         props.setIsLoggedIn(true);
       }
     } catch (error) {
@@ -58,8 +54,8 @@ function Loginbox(props) {
   async function handleLoginSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.post("/login", loginData); 
-      if(response.data.message=="Login successful"){
+      const response = await axios.post("/login", loginData);
+      if (response.data.message == "Login successful") {
         props.setIsLoggedIn(true);
         setUserData(response.data.data);
       }

@@ -8,6 +8,7 @@ export default defineConfig({
     proxy: {
       '/login': 'http://localhost:3000/',
       '/signup': 'http://localhost:3000/',
+      '/sendMessage': 'http://localhost:3000/',
     }
   },
 })

@@ -16,7 +16,7 @@ function Inputform(props) {
     console.log(messageObject);
 
     try {
-      const response = await axios.post("http://localhost:3000/sendMessage", messageObject);
+      const response = await axios.post("/sendMessage", messageObject);
       console.log(response.data.message);
     } catch (error) {
       console.error("Error:", error);

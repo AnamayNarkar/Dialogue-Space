@@ -53,10 +53,6 @@ async function updateMessages(req, res) {
         const user = await User.findOne({ username: sender });
         const friend = await User.findOne({ username: receiver });
 
-        if (!user || !friend) {
-            return res.status(404).send({ message: "User or friend not found" });
-        }
-
         let chat = user.chatsWithFriends.find(chat => chat.friendUserName === receiver);
         if (!chat) {
             chat = { friendUserName: receiver, messages: [] };
@@ -90,4 +86,4 @@ async function updateMessages(req, res) {
     }
 }
 
-export { signUp, login, updateMessages };
+export { signUp, login, updateMessages };   
