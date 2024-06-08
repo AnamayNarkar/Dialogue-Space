@@ -3,7 +3,8 @@ import '../styles/Inputform.css';
 import axios from 'axios';
 
 function Inputform(props) {
-  async function handleMessage(event) {
+
+  async function handleSendMessage(event) {
     event.preventDefault();
 
     const messageObject = {
@@ -13,7 +14,8 @@ function Inputform(props) {
       time: new Date().toLocaleTimeString(),
       date: new Date().toLocaleDateString() 
     };
-    console.log(messageObject);
+
+    event.target.value = '';
 
     try {
       const response = await axios.post("/sendMessage", messageObject);
@@ -25,7 +27,7 @@ function Inputform(props) {
 
   return (
     <div className='inputForm'>
-      <form action="/sendMessage" method="POST" onSubmit={handleMessage}>
+      <form action="/sendMessage" method="POST" onSubmit={handleSendMessage}>
         <input type='text' placeholder='Type a message' />
         <button type='submit'><img src="/assets/sendIcon.png" alt="send" /></button>
       </form>
