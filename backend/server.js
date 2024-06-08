@@ -1,26 +1,17 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import connectDB from './mongoDB/connect.js';
+import allRoutes from './routes/routes.js';
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post('/login', (req, res) => {
-  console.log("Login request received");
-  if(req.body.usernameoremail === "admin" && req.body.password === "admin") {
-    res.send(true)
-  }else{
-    res.send(false)
-  }
-});
+connectDB('mongodb://localhost:27017/dialogueSpace');
 
-app.post('/signup', (req, res) => {
-  console.log("Signup request received");
-  console.log(req.body);
-  res.send("Signup request received"); //sample response
-});
+app.use('/', allRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");

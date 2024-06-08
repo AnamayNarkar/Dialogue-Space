@@ -39,8 +39,11 @@ function Loginbox(props) {
   async function handleSignUpSubmit(event) {
     event.preventDefault();
     try {
-      const response = await axios.post("/signup", signUpData);
+      const response = await axios.post("/signup", signUpData); 
       console.log(response.data);
+      if(response.data=="User saved successfully"){
+        props.setIsLoggedIn(true);
+      }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -51,7 +54,7 @@ function Loginbox(props) {
     try {
       const response = await axios.post("/login", loginData); 
       console.log(response.data);
-      if(response.data){
+      if(response.data=="Login successful"){
         props.setIsLoggedIn(true);
       }
     } catch (error) {
