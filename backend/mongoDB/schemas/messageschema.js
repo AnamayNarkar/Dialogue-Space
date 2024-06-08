@@ -5,6 +5,10 @@ const messageSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    receiver: { 
+        type: String,
+        required: true,
+    },
     message: {
         type: String,
         required: true,
@@ -13,10 +17,10 @@ const messageSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    date:{
-        type:String,
-        required:true,
+    date: {
+        type: String,
+        required: true,
     }
-})
+});
 
 export default messageSchema;

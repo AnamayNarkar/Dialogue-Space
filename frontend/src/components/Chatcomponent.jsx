@@ -18,7 +18,7 @@ function Chatcomponent(props) {
     <div className="chatComponent">
         <Chatheader openChat={props.openChat}/>
         <Chatarea currentUser={props.currentUser} chatsToDisplay={chatsToDisplay}/>
-        <Inputform />
+        <Inputform openChat={props.openChat} currentUser={props.currentUser}/>
     </div>
   )
 }

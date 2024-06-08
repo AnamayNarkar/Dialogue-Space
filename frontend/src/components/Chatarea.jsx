@@ -11,7 +11,7 @@ function Chatarea(props) {
     <div className='chatArea'>
       {props.chatsToDisplay.map((chat)=>{
         return (
-          <div key={chat.id} className={`chatBubble ${props.currentUser === chat.sender ? 'userMessage' : 'contactMessage'}`} >
+          <div key={chat._id} className={`chatBubble ${props.currentUser === chat.sender ? 'userMessage' : 'contactMessage'}`} >
             <p>{chat.message}</p>
           </div>
         )

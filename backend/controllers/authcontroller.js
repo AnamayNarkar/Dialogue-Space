@@ -47,4 +47,47 @@ async function login(req, res) {
     }
 }
 
-export { signUp, login };
+async function updateMessages(req, res) {
+    const { sender, receiver, message, time, date } = req.body;
+    try {
+        const user = await User.findOne({ username: sender });
+        const friend = await User.findOne({ username: receiver });
+
+        if (!user || !friend) {
+            return res.status(404).send({ message: "User or friend not found" });
+        }
+
+        let chat = user.chatsWithFriends.find(chat => chat.friendUserName === receiver);
+        if (!chat) {
+            chat = { friendUserName: receiver, messages: [] };
+            user.chatsWithFriends.push(chat);
+        }
+
+        let friendChat = friend.chatsWithFriends.find(chat => chat.friendUserName === sender);
+        if (!friendChat) {
+            friendChat = { friendUserName: sender, messages: [] };
+            friend.chatsWithFriends.push(friendChat);
+        }
+
+        const messageObj = {
+            sender,
+            receiver, 
+            message,
+            time,
+            date
+        };
+
+        chat.messages.unshift(messageObj);
+        friendChat.messages.unshift(messageObj);
+
+        await user.save();
+        await friend.save();
+
+        res.send({ message: "Message updated successfully" });
+    } catch (error) {
+        console.error("Error:", error);
+        res.status(500).send({ message: "Error updating messages" });
+    }
+}
+
+export { signUp, login, updateMessages };
