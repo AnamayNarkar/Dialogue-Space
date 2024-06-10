@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import '../styles/Chatarea.css';
 
 function Chatarea(props) {
+  
   useEffect(() => {
     document.querySelector('.chatArea').scrollTop = document.querySelector('.chatArea').scrollHeight;
   }, [props.chatsToDisplay]);

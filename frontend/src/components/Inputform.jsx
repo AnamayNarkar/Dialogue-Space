@@ -15,7 +15,7 @@ function Inputform(props) {
       date: new Date().toLocaleDateString() 
     };
 
-    event.target.value = '';
+    event.target[0].value = '';
 
     try {
       const response = await axios.post("/sendMessage", messageObject);
