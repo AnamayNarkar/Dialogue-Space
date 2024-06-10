@@ -1,0 +1,15 @@
+.addFriendsTab{
+    height:100%;
+    width:100%;
+    background-color:#323942;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addFriendsText{
+    color: white;
+    font-size: 28px;
+    font-family: "Noto Serif", serif;
+    user-select: none;
+}

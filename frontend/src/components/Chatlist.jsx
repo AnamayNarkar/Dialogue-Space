@@ -3,6 +3,8 @@ import "../styles/Chatlist.css";
 
 function Chatlist(props) {
   function openChat(event) {
+    props.setAddFriendsTab(false);
+    props.setSettingsTab(false);
     const chatPanel = event.currentTarget;
     const friendName = chatPanel.querySelector("h4").innerText;
     props.setOpenChat(friendName);
