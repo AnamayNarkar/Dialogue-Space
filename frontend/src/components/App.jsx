@@ -8,9 +8,9 @@ function App(props) {
 
   return (
     <div className='appShell'>
-      <Sidebar setAddFriendsTab={props.setAddFriendsTab} setOpenChat={props.setOpenChat} setSettingsTab={props.setSettingsTab}/>
-      <Chatlist currentUser={props.userData.username} friends={props.userData.friendList} setOpenChat={props.setOpenChat} setAddFriendsTab={props.setAddFriendsTab} setSettingsTab={props.setSettingsTab}/>
-      <Workarea currentUser={props.userData.username} userChats={props.userData.chatsWithFriends} openChat={props.openChat} addFriendsTab={props.addFriendsTab} settingsTab={props.settingsTab}/>
+      <Sidebar setOpenAddFriendsTab={props.setOpenAddFriendsTab} setOpenChat={props.setOpenChat} setOpenSettingsTab={props.setOpenSettingsTab}/>
+      <Chatlist currentUser={props.userData.username} friendList={props.userData.friendList} setOpenChat={props.setOpenChat} setOpenAddFriendsTab={props.setOpenAddFriendsTab} setOpenSettingsTab={props.setOpenSettingsTab}/>
+      <Workarea currentUser={props.userData.username} currentUserId={props.userData._id} chatsWithFriends={props.userData.chatsWithFriends} openChat={props.openChat} openAddFriendsTab={props.openAddFriendsTab} openSettingsTab={props.openSettingsTab} friendRequestsReceived={props.userData.friendRequestsReceived} friendRequestsSent={props.userData.friendRequestsSent}/>
     </div>
   )
 }

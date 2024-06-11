@@ -5,14 +5,14 @@ function Sidebar(props) {
 
   function handleAddFriendsTab() {
     props.setOpenChat('');
-    props.setSettingsTab(false);
-    props.setAddFriendsTab(true);
+    props.setOpenSettingsTab(false);
+    props.setOpenAddFriendsTab(true);
   }
 
   function handleSettingsTab() {
     props.setOpenChat('');
-    props.setAddFriendsTab(false);
-    props.setSettingsTab(true);
+    props.setOpenAddFriendsTab(false);
+    props.setOpenSettingsTab(true);
   }
 
   return (

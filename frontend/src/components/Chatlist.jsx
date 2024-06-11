@@ -3,8 +3,8 @@ import "../styles/Chatlist.css";
 
 function Chatlist(props) {
   function openChat(event) {
-    props.setAddFriendsTab(false);
-    props.setSettingsTab(false);
+    props.setOpenAddFriendsTab(false);
+    props.setOpenSettingsTab(false);
     const chatPanel = event.currentTarget;
     const friendName = chatPanel.querySelector("h4").innerText;
     props.setOpenChat(friendName);
@@ -17,11 +17,11 @@ function Chatlist(props) {
       </div>
       <div className="chatListbottomBar">
         <div className="conversationsList">
-          {props.friends.map((friend) => {
+          {props.friendList.map((friend) => {
             return (
-              <div key={friend} className="chatPanel" onClick={openChat}>
+              <div key={friend._id} className="chatPanel" onClick={openChat}>
                 <img src="/assets/defaultProfileIcon.png" alt="Profile Icon" />
-                <h4>{friend}</h4>
+                <h4>{friend.username}</h4>
               </div>
             );
           })}

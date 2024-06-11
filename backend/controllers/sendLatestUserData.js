@@ -4,7 +4,6 @@ async function sendLatestUserData(req, res) {
 
     const { username, email } = req.query;
 
-
     const user = await User.findOne({
         $or: [{ username: username }, { email: email }],
     });

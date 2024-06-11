@@ -1,8 +1,16 @@
 import mongoose from "mongoose";
 import messageSchema from "./messageschema.js";
-
 const chatsWithFriendsSchema = new mongoose.Schema({
-    friendUserName: String,
+    friend:{
+        username: {
+            type: String,
+            required: true,
+        },
+        id: {
+            type: String,
+            required: true,
+        }
+    },
     messages: [messageSchema],
 });
 

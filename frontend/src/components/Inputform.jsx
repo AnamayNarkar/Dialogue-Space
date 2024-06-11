@@ -12,10 +12,14 @@ function Inputform(props) {
       receiver: props.openChat,
       message: event.target[0].value,
       time: new Date().toLocaleTimeString(),
-      date: new Date().toLocaleDateString() 
+      date: new Date().toLocaleDateString() ,
+      friendId : props.friendId,
+      senderId: props.currentUserId,
     };
 
     event.target[0].value = '';
+
+    console.log(messageObject)
 
     try {
       const response = await axios.post("/sendMessage", messageObject);

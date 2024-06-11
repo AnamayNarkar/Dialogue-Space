@@ -18,6 +18,7 @@ async function sendUpdatesToClient(sender, receiver, message, time, date) {
     });
 
     let messageObjFromMongo;
+    
     if (user) {
         for (const friendChat of user.chatsWithFriends) {
             const foundMessage = friendChat.messages.find(msg =>

@@ -7,7 +7,12 @@ async function signUp(req, res) {
     try {
         const newUser = new User({ name, email, username, password });
         await newUser.save();
-        res.send({ message: "User saved successfully" });
+
+        const userData = await User.findOne({
+            $or: [{ username: username }, { email:email }],
+        });
+
+        res.send({ data: userData, message:"User saved successfully" });
     } catch (error) {
         res.send({ message: "Error creating user" });
     }

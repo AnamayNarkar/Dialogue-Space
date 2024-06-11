@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import chatsWithFriendsSchema from "./chatsWithFriendsSchema.js";
+import usernameAndIdSchema from "./usernameAndIdSchema.js";
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -22,11 +23,15 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     friendList: {
-        type: [String],
+        type: [usernameAndIdSchema],
         default: [],
     },
     friendRequestsReceived: {
-        type: [String],
+        type: [usernameAndIdSchema],
+        default: [],
+    },
+    friendRequestsSent: {
+        type: [usernameAndIdSchema],
         default: [],
     },
     chatsWithFriends: [chatsWithFriendsSchema],

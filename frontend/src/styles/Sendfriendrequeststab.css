@@ -1,0 +1,115 @@
+.sendFriendRequestsTab{
+    height: 90%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.sendFriendRequestsTabInput{ 
+    height:11.90%;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:0%;
+    gap:0.8%;
+    user-select: none;
+}
+
+.sendFriendRequestsTabInput>input{
+    height:65%;
+    width:92%;
+    background-color:#323942;
+    border-radius: 10px;
+    border:1px solid grey;
+    outline: none;
+    font-size: 1.3rem;
+    padding-left: 1%;
+    color:white;
+}
+
+.sendFriendRequestsTabInput>img{
+    width: 30px;
+    height: 30px;
+}
+
+.previouslySentFriendRequests{
+    height: 88.10%;
+    width:100%;
+    position: absolute;
+    bottom: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.previouslySentFriendRequests::-webkit-scrollbar {
+    width: 8px; 
+}
+
+.previouslySentFriendRequests::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.previouslySentFriendRequests::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.previouslySentFriendRequests::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.friendRequestSent{
+    height:13.5%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    padding:0%;
+    margin:0%;
+    position: relative;
+}
+
+.friendRequestSent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0.5%;
+    width: 99%;
+    border-bottom: 1px solid grey;
+}
+
+.friendRequestSentInfo{
+    margin:0%;
+    margin-left: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:12%;
+}
+
+.friendRequestSentInfo>h3{
+    font-family: "Open Sans", sans-serif;
+    color: azure;
+    font-size: 0.85rem;
+    padding:0%;
+}
+
+.friendRequestSentInfo>img{
+    height: 40px;
+    width: 40px;
+}
+
+.takeRequestBack{
+    margin-right: 3%;
+    display: flex;
+    gap: 20%;
+    cursor: pointer;
+    padding:0%;
+    color: #8BC34A;
+}

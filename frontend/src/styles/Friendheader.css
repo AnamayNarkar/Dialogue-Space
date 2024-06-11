@@ -1,0 +1,24 @@
+.friendsHeader {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5%;
+    user-select: none;
+    border-bottom: 1px solid grey;
+}
+
+.tabs {
+    font-family: "Open Sans", sans-serif;
+    color: azure;
+    font-size: 1.15rem;
+    margin-left: 2%;
+    padding: 1%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tabs:hover {
+    background-color: #252d34;
+}

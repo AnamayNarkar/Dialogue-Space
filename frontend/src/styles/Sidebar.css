@@ -34,6 +34,7 @@
 .addUserIcon{
     height: 75%;
     width: 75%;
+    user-select: none;
 }
 
 .settingsIcon{

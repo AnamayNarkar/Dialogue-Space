@@ -4,6 +4,14 @@ import "../styles/Loginbox.css";
 
 function Loginbox(props) {
 
+  function delay(time) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, time);
+    });
+  }
+
   const [showSignUp, setShowSignUp] = useState(false);
   const redDivStyles = {
     left: showSignUp ? "50%" : "0",
@@ -40,10 +48,11 @@ function Loginbox(props) {
     try {
       const response = await axios.post("/signup", signUpData);
       if (response.data.message == "User saved successfully") {
-        props.setIsLoggedIn(true);
-        localStorage.setItem("isLoggedIn", "true");
-        props.setUserData(response.data.data);
         localStorage.setItem("userData", JSON.stringify(response.data.data));
+        props.setUserData(response.data.data);
+        await delay(1500); 
+        localStorage.setItem("isLoggedIn", true);
+        props.setIsLoggedIn(true);
       }
     } catch (error) {
       console.error("Error:", error);

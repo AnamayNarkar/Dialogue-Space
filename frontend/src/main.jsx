@@ -12,13 +12,12 @@ const socket = io.connect('http://localhost:3000');
 
 function Root() {
   const [openChat, setOpenChat] = useState('');
-  const [addFriendsTab, setAddFriendsTab] = useState(false);
-  const [settingsTab, setSettingsTab] = useState(false);
+  const [openAddFriendsTab, setOpenAddFriendsTab] = useState(false);
+  const [openSettingsTab, setOpenSettingsTab] = useState(false);
   const [userData, setUserData] = useState(localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : {});
   const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem("isLoggedIn") ? true : false);
 
   useEffect(() => {
-
 
     socket.on('connect', () => {
       console.log("Connected to server through socket.io!");
@@ -28,13 +27,30 @@ function Root() {
           console.log(prevUserData);
           const newUserData = { ...prevUserData };
           const chatToUpdate = newUserData.chatsWithFriends.find(
-            (chat) => chat.friendUserName === messageObj.receiver || chat.friendUserName === messageObj.sender
+            (chat) => chat.friend.username === messageObj.receiver || chat.friend.username === messageObj.sender
           );
           chatToUpdate.messages.unshift(messageObj);
           localStorage.setItem('userData', JSON.stringify(newUserData));
           return newUserData;
         });
       });
+
+      socket.on('friendRequestAccepted', (updatedData) => {
+        setUserData((prevUserData) => {
+          const newUserData = { ...prevUserData, friendList: updatedData.friendList, friendRequestsReceived: updatedData.friendRequestsReceived};
+          localStorage.setItem('userData', JSON.stringify(newUserData));
+          return newUserData;
+        });
+      })
+
+      socket.on('friendRequestRejected', (updatedFriendRequestsReceived) => {
+        setUserData((prevUserData) => {
+          const newUserData = { ...prevUserData, friendRequestsReceived: updatedFriendRequestsReceived };
+          localStorage.setItem('userData', JSON.stringify(newUserData));
+          return newUserData;
+        });
+      });
+
     });
 
     return () => {
@@ -74,7 +90,7 @@ function Root() {
     <BrowserRouter>
       <React.StrictMode>
         <Routes>
-          <Route path="/" element={Boolean(localStorage.getItem('isLoggedIn')) ? <App userData={userData} openChat={openChat} setOpenChat={setOpenChat} addFriendsTab={addFriendsTab} setAddFriendsTab={setAddFriendsTab} settingsTab={settingsTab} setSettingsTab={setSettingsTab} /> : <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
+          <Route path="/" element={localStorage.getItem('isLoggedIn') ? <App userData={userData} openChat={openChat} setOpenChat={setOpenChat} openAddFriendsTab={openAddFriendsTab} setOpenAddFriendsTab={setOpenAddFriendsTab} openSettingsTab={openSettingsTab} setOpenSettingsTab={setOpenSettingsTab}/> : <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
         </Routes>
       </React.StrictMode>
     </BrowserRouter>
