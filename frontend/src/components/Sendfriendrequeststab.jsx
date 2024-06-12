@@ -9,16 +9,33 @@ function Sendfriendrequeststab(props) {
     setFriendRequestRecipient(event.target.value);
   };
 
-  const sendFriendRequest = async () => {
+  async function sendFriendRequest (event){
+
+    event.preventDefault();
+
+    if(friendRequestRecipient.trim() === ''){
+      alert('Please enter a username');
+      return;
+    }
+
+    if(friendRequestRecipient.trim() === props.currentUser){
+      alert('You cannot send a friend request to yourself');
+      return;
+    }
+
     const dataToSend = {
       sender: props.currentUser,
-      receiver: friendRequestRecipient
+      receiver: friendRequestRecipient.trim()
     };
 
     try {
       const response = await axios.post('/sendFriendRequest', dataToSend);
-      console.log(response);
-      setFriendRequestRecipient('');
+      
+      if(response.data === "Friend request sent successfully"){
+        setFriendRequestRecipient('');
+      }else{
+        alert(response.data);
+      }
     } catch (error) {
       console.error('Error sending friend request:', error);
     }
@@ -27,17 +44,20 @@ function Sendfriendrequeststab(props) {
   return (
     <div className='sendFriendRequestsTab'>
       <div className='sendFriendRequestsTabInput'>
-        <input
-          type="text"
-          placeholder="Type a username"
-          value={friendRequestRecipient}
-          onChange={handleInputChange}
-        />
-        <img
-          src="./assets/sendIcon.png"
-          alt="Send Icon"
-          onClick={sendFriendRequest}
-        />
+        <form onSubmit={sendFriendRequest} >
+          <input
+            type="text"
+            placeholder="Type a username"
+            value={friendRequestRecipient}
+            onChange={handleInputChange}
+          />
+          <button type="submit" classname="sendfriendRequestFormButton" >
+            <img
+              src="./assets/sendIcon.png"
+              alt="Send Icon"
+             />
+          </button>
+        </form>
       </div>
       <div className='previouslySentFriendRequests'>
         {props.friendRequestsSent ? props.friendRequestsSent.map((friendRequestSent) => (

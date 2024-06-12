@@ -20,7 +20,16 @@
     user-select: none;
 }
 
-.sendFriendRequestsTabInput>input{
+.sendFriendRequestsTabInput>form{
+    height:100%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1%;
+}
+
+.sendFriendRequestsTabInput>form>input{
     height:65%;
     width:92%;
     background-color:#323942;
@@ -32,11 +41,20 @@
     color:white;
 }
 
-.sendFriendRequestsTabInput>img{
-    width: 30px;
-    height: 30px;
+.sendFriendRequestsTabInput > form > button {
+    height: 37px;
+    width: 37px;
     cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
 }
+
+.sendFriendRequestsTabInput > form > button > img {
+    height: 100%;
+    width: 100%;
+}
+
 
 .previouslySentFriendRequests{
     height: 88.10%;

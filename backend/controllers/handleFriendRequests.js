@@ -3,16 +3,30 @@ import chatsWithFriendsSchema from "../mongoDB/schemas/chatsWithFriendsSchema.js
 import { io, usersAndSockets } from "../server.js";
 
 function handleError(res, error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
+    res.send("Internal Server Error");
 }
 
 async function sendFriendRequest(req, res) {
     const { sender, receiver } = req.body;
     try {
-
+        
         const requestSenderObject = await User.findOne({ username: sender })
         const requestReceiverObject = await User.findOne({ username: receiver })
+
+        if(!requestReceiverObject){
+            res.send("User not found");
+            return;
+        }
+
+        if(requestSenderObject.friendList.some(friend => friend.username === receiver)){
+            res.send("You are already friends with this user");
+            return;
+        }
+
+        if(requestSenderObject.friendRequestsSent.some(request => request.username === receiver)){
+            res.send("You have already sent a friend request to this user");
+            return;
+        }
 
         const updatedSender = await User.findOneAndUpdate(
             { username: sender },
@@ -32,7 +46,7 @@ async function sendFriendRequest(req, res) {
             io.to(senderSocket).emit("youSentAFriendRequest", updatedSender.friendRequestsSent);
         }
 
-        const receiverSocket = usersAndSockets[receiver];
+        const receiverSocket = usersAndSockets[receiver];   
 
         if (receiverSocket) {
             io.to(receiverSocket).emit("youHaveAFriendRequest", updatedReceiver.friendRequestsReceived);

@@ -4,6 +4,8 @@ import "../styles/Loginbox.css";
 
 function Loginbox(props) {
 
+  const [loading, setLoading] = useState(false);
+
   function delay(time) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -44,8 +46,30 @@ function Loginbox(props) {
   };
 
   async function handleSignUpSubmit(event) {
+
     event.preventDefault();
+    
+    if(signUpData.name === "" || signUpData.email === "" || signUpData.username === "" || signUpData.password === ""){
+      alert("Please fill in all the fields");
+      return;
+    }
+
+    if(signUpData.username.includes(" ")){
+      alert("Username cannot contain spaces");
+      return;
+    }
+
+    const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(!emailPattern.test(signUpData.email)){
+      alert("Please enter a valid email address");
+      return;
+    }
+
+
     try {
+
+      setLoading(true);
+
       const response = await axios.post("/signup", signUpData);
       if (response.data.message == "User saved successfully") {
         localStorage.setItem("userData", JSON.stringify(response.data.data));
@@ -53,24 +77,47 @@ function Loginbox(props) {
         await delay(1500); 
         localStorage.setItem("isLoggedIn", true);
         props.setIsLoggedIn(true);
+      }else{
+        alert(response.data.message);
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
   async function handleLoginSubmit(event) {
+
     event.preventDefault();
+
+    if(loginData.usernameoremail === "" || loginData.password === ""){
+      alert("Please fill in all the fields");
+      return;
+    }
+
+    if(loginData.usernameoremail.trim().includes(" ")){
+      alert("Username or Email cannot contain spaces");
+      return;
+    }
+
     try {
+
+      setLoading(true);
+
       const response = await axios.post("/login", loginData);
       if (response.data.message == "Login successful") {
         props.setIsLoggedIn(true);
         localStorage.setItem("isLoggedIn", "true");
         props.setUserData(response.data.data);
         localStorage.setItem("userData", JSON.stringify(response.data.data));
+      } else {
+        alert(response.data.message);
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -119,7 +166,7 @@ function Loginbox(props) {
           onChange={handleSignUpChange}
           autoComplete="off"
         />
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={loading}> {loading ? "Submitting..." : "Sign Up"} </button>
       </form>
       <form
         className={`loginForm ${showSignUp ? "hidden" : ""}`}
@@ -141,7 +188,7 @@ function Loginbox(props) {
           onChange={handleLoginChange}
           autoComplete="off"
         />
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}> {loading ? "Submitting..." : "Login"} </button>
       </form>
     </div>
   );
