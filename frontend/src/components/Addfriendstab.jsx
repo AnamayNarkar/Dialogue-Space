@@ -10,13 +10,10 @@ function Addfriendstab(props) {
   const [ openSendFriendRequestsTab , setOpenSendFriendRequestsTab ] = React.useState(true)
   const [ openFriendRequestsTab , setOpenFriendRequestsTab ] = React.useState(false)
 
-  console.log(props.friendRequestsSent)
-  console.log(props.friendRequestsReceived)
-
   return (
     <div className='addFriendsTab'>
         <Friendheader setOpenSendFriendRequestsTab={setOpenSendFriendRequestsTab} setOpenFriendRequestsTab={setOpenFriendRequestsTab}/>
-        {openSendFriendRequestsTab ? <Sendfriendrequeststab friendRequestsSent={props.friendRequestsSent}/> : openFriendRequestsTab ? <Friendrequestslisttab friendRequestsReceived={props.friendRequestsReceived} currentUser={props.currentUser}/> : null}
+        {openSendFriendRequestsTab ? <Sendfriendrequeststab friendRequestsSent={props.friendRequestsSent} currentUser={props.currentUser} currentUserId={props.currentUserId} /> : openFriendRequestsTab ? <Friendrequestslisttab friendRequestsReceived={props.friendRequestsReceived} currentUser={props.currentUser} currentUserId={props.currentUserId}/> : null}
     </div>
   )
 }

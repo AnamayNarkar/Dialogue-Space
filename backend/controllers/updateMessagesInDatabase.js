@@ -12,46 +12,26 @@ async function updateMessages(req, res) {
     chat = user.chatsWithFriends.find(
       (chat) => chat.friend.username === receiver
     );
-    console.log(1);
-    if (!chat) {
-      chat = { friend: { username: receiver, _id: friendId }, messages: [] };
-      await User.updateOne(
-        { username: sender },
-        { $push: { chatsWithFriends: chat } }
-      );
-    }
-    console.log(2);
 
     friendChat = friend.chatsWithFriends.find(
       (chat) => chat.friend.username === sender
     );
-    console.log(3);
-    if (!friendChat) {
-      friendChat = {
-        friend: { username: sender, _id: user._id },
-        messages: [],
-      };
-      await User.updateOne(
-        { username: receiver },
-        { $push: { chatsWithFriends: friendChat } }
-      );
-    }
-    console.log(4);
 
     const messageObj = { sender, receiver, message, time, date };
+
     await User.updateOne(
       { username: sender, "chatsWithFriends.friend.username": receiver },
       { $push: { "chatsWithFriends.$.messages": { $each: [messageObj], $position: 0 } } }
     );
+
     await User.updateOne(
       { username: receiver, "chatsWithFriends.friend.username": sender },
       { $push: { "chatsWithFriends.$.messages": { $each: [messageObj], $position: 0 } } }
     );
-    console.log(5);
 
-    console.log(6);
     res.send({ message: "Message updated successfully" });
     sendUpdatesToClient(sender, receiver, message, time, date);
+    
   } catch (error) {
     res.send({ message: "Error updating message" });
   }

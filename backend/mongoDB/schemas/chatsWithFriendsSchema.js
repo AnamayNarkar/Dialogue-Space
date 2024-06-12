@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
 import messageSchema from "./messageschema.js";
+
 const chatsWithFriendsSchema = new mongoose.Schema({
-    friend:{
+    friend: {
         username: {
             type: String,
             required: true,
         },
         id: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
             required: true,
         }
     },

@@ -12,7 +12,7 @@ function Workarea(props) {
       {props.openChat ? (
         <Chatcomponent currentUser={props.currentUser} chatsWithFriends={props.chatsWithFriends} openChat={props.openChat} currentUserId={props.currentUserId}/>
       ) : props.openAddFriendsTab ? (
-        <Addfriendstab currentUser={props.currentUser} friendRequestsReceived={props.friendRequestsReceived} friendRequestsSent={props.friendRequestsSent}/>
+        <Addfriendstab currentUser={props.currentUser} currentUserId={props.currentUserId} friendRequestsReceived={props.friendRequestsReceived} friendRequestsSent={props.friendRequestsSent} />
       ) : props.openSettingsTab ? (
         <Settingstab />
       ) : (
