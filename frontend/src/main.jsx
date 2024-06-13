@@ -146,7 +146,7 @@ function Root() {
         <BrowserRouter>
             <React.StrictMode>
                 <Routes>
-                    <Route path="/" element={isLoggedIn ? <App userData={userData} openChat={openChat} setOpenChat={setOpenChat} openAddFriendsTab={openAddFriendsTab} setOpenAddFriendsTab={setOpenAddFriendsTab} openSettingsTab={openSettingsTab} setOpenSettingsTab={setOpenSettingsTab} /> : <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
+                    <Route path="/" element={isLoggedIn ? <App userData={userData} setUserData={setUserData} setIsLoggedIn={setIsLoggedIn} openChat={openChat} setOpenChat={setOpenChat} openAddFriendsTab={openAddFriendsTab} setOpenAddFriendsTab={setOpenAddFriendsTab} openSettingsTab={openSettingsTab} setOpenSettingsTab={setOpenSettingsTab} /> : <Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
                 </Routes>
             </React.StrictMode>
         </BrowserRouter>

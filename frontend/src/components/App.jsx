@@ -8,7 +8,7 @@ function App(props) {
 
   return (
     <div className='appShell'>
-      <Sidebar setOpenAddFriendsTab={props.setOpenAddFriendsTab} setOpenChat={props.setOpenChat} setOpenSettingsTab={props.setOpenSettingsTab}/>
+      <Sidebar setOpenAddFriendsTab={props.setOpenAddFriendsTab} setOpenChat={props.setOpenChat} setOpenSettingsTab={props.setOpenSettingsTab} setUserData={props.setUserData} setIsLoggedIn={props.setIsLoggedIn} />
       <Chatlist currentUser={props.userData.username} friendList={props.userData.friendList} setOpenChat={props.setOpenChat} setOpenAddFriendsTab={props.setOpenAddFriendsTab} setOpenSettingsTab={props.setOpenSettingsTab}/>
       <Workarea currentUser={props.userData.username} currentUserId={props.userData._id} chatsWithFriends={props.userData.chatsWithFriends} openChat={props.openChat} openAddFriendsTab={props.openAddFriendsTab} openSettingsTab={props.openSettingsTab} friendRequestsReceived={props.userData.friendRequestsReceived} friendRequestsSent={props.userData.friendRequestsSent}/>
     </div>

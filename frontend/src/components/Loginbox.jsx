@@ -157,6 +157,7 @@ function Loginbox(props) {
           value={signUpData.username}
           onChange={handleSignUpChange}
           autoComplete="off"
+          maxLength={20}
         />
         <input
           className="setPasswordInput"

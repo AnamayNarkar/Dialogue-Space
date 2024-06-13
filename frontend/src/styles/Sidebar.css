@@ -43,3 +43,12 @@
     cursor: pointer;
     user-select: none;
 }
+
+.logoutIcon{
+    height: 36px;
+    width: 36px;
+    cursor: pointer;
+    user-select: none;
+    position :absolute;
+    bottom:2.6%;
+}
