@@ -74,6 +74,7 @@ function Loginbox(props) {
       if (response.data.message == "User saved successfully") {
         localStorage.setItem("userData", JSON.stringify(response.data.data));
         props.setUserData(response.data.data);
+        console.log(response.data.data)
         await delay(1500); 
         localStorage.setItem("isLoggedIn", true);
         props.setIsLoggedIn(true);

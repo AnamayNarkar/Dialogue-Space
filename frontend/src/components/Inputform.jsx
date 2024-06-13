@@ -11,15 +11,13 @@ function Inputform(props) {
       sender: props.currentUser,
       receiver: props.openChat,
       message: event.target[0].value,
-      time: new Date().toLocaleTimeString(),
+      time: new Date().toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' }),
       date: new Date().toLocaleDateString() ,
       friendId : props.friendId,
       senderId: props.currentUserId,
     };
 
     event.target[0].value = '';
-
-    console.log(messageObject)
 
     try {
       const response = await axios.post("/sendMessage", messageObject);

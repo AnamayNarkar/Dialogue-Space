@@ -1,5 +1,5 @@
 .chatArea {
-    height: 82%;
+    height: 80%;
     width: 100%;
     margin-bottom:0%;
     display: flex;
@@ -38,30 +38,41 @@
 }
 
 .chatBubble {
-    min-height: 9%;
-    min-width: 2%;
-    max-height: auto;
     max-width: 42%;
+    min-width: 7%;
+    width: auto;
+    height: auto;
     background-color: #FFFFFF;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px;
+    padding-right: 35px;
+    padding-left: 10px;
+    padding-top:10px;
+    padding-bottom: 10px;
     margin-top: 1%;
     margin-bottom: 1%;
-    box-sizing: border-box; /* Ensures padding is included in the element's total width */
-    overflow-wrap: break-word; 
-    word-wrap: break-word;     
-    word-break: break-word;    
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    position: relative;
 }
 
-.chatBubble > p {
+.chatBubble > .chatMessage {
     font-size: 1.096rem;
     margin-top: 1.5%;
     margin-bottom: 1.5%;
     word-wrap: break-word;     
     word-break: break-word;    
     overflow-wrap: break-word; 
+}
+
+.chatBubble>.chatTime{
+    font-size: 12px;
+    position: absolute;
+    bottom:2px;
+    right:5px;
 }

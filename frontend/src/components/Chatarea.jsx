@@ -10,13 +10,16 @@ function Chatarea(props) {
   return (
     <div className='chatArea'>
       {props.chatsToDisplay.length > 0 ? (
-        props.chatsToDisplay.map((chat) => (
-          <div
-            key={chat._id}
-            className={`chatBubble ${props.currentUser === chat.sender ? 'userMessage' : 'contactMessage'}`}
-          >
-            <p>{chat.message}</p>
+        props.chatsToDisplay.map((chat,index) => (
+          // add dates condition
+          // if(index === 0 || props.chatsToDisplay[index-1].date !== props.chatsToDisplay[index].date){
+            
+          // }
+          <div key={chat._id} className={`chatBubble ${props.currentUser === chat.sender ? 'userMessage' : 'contactMessage'}`}>
+            <p className='chatMessage'>{chat.message}</p>
+            <p className='chatTime'>{chat.time}</p>
           </div>
+
         ))
       ) : null
       }
