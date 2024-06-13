@@ -39,6 +39,25 @@ function Root() {
                 });
             });
 
+            socket.on('youTookBackAFriendRequest',(updatedFriendRequestsSent)=>{
+                setUserData((prevUserData) => {
+                    const newUserData = { ...prevUserData };
+                    newUserData.friendRequestsSent = updatedFriendRequestsSent;
+                    localStorage.setItem('userData', JSON.stringify(newUserData));
+                    return newUserData;
+
+                });
+            })
+
+            socket.on('aFriendRequestSentToYouWasTakenBack', (updatedFriendRequestsReceived) => {
+                setUserData((prevUserData) => {
+                    const newUserData = { ...prevUserData };
+                    newUserData.friendRequestsReceived = updatedFriendRequestsReceived;
+                    localStorage.setItem('userData', JSON.stringify(newUserData));
+                    return newUserData;
+                });
+            });
+
             socket.on('youAcceptedAFriendRequest', (updatedData) => {
 
                 setUserData((prevUserData)=>{

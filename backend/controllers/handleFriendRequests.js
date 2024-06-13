@@ -6,6 +6,41 @@ function handleError(res, error) {
     res.send("Internal Server Error");
 }
 
+async function takeBackFriendRequest(req, res) {
+    const { sender, receiver } = req.body;
+    try {
+        const requestSenderObject = await User.findOne({ username: sender });
+        const requestReceiverObject = await User.findOne({ username: receiver });
+
+        const updatedSender = await User.findOneAndUpdate(
+            { username : sender},
+            { $pull : { friendRequestsSent : { username: requestReceiverObject.username, _id: requestReceiverObject._id } } },
+            { new : true }
+        )
+
+        const updatedReceiver = await User.findOneAndUpdate(
+            { username : receiver },
+            { $pull : { friendRequestsReceived : { username: requestSenderObject.username, _id: requestSenderObject._id } } },
+            { new : true }
+        )
+
+        const senderSocket = usersAndSockets[sender];
+
+        if (senderSocket) {
+            io.to(senderSocket).emit("youTookBackAFriendRequest", updatedSender.friendRequestsSent);
+        }
+
+        const receiverSocket = usersAndSockets[receiver];
+
+        if (receiverSocket) {
+            io.to(receiverSocket).emit("aFriendRequestSentToYouWasTakenBack", updatedReceiver.friendRequestsReceived);
+        }
+    
+    }catch(err){
+        handleError(res,err)
+    }
+}
+
 async function sendFriendRequest(req, res) {
     const { sender, receiver } = req.body;
     try {
@@ -185,4 +220,4 @@ async function rejectFriendRequest(req, res) {
 }
 
 
-export { acceptFriendRequest, rejectFriendRequest, sendFriendRequest };
+export { acceptFriendRequest, rejectFriendRequest, sendFriendRequest, takeBackFriendRequest};

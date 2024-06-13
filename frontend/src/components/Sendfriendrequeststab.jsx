@@ -3,6 +3,7 @@ import '../styles/Sendfriendrequeststab.css';
 import axios from 'axios';
 
 function Sendfriendrequeststab(props) {
+
   const [friendRequestRecipient, setFriendRequestRecipient] = useState('');
 
   const handleInputChange = (event) => {
@@ -41,6 +42,29 @@ function Sendfriendrequeststab(props) {
     }
   };
 
+  async function takeBackFriendRequest (event){
+
+    const friendRequestSentElement = event.target.closest('.friendRequestSent');
+    const receiver = friendRequestSentElement.querySelector('h3').textContent;
+      
+      const dataToSend = {
+        sender: props.currentUser,
+        receiver: receiver
+      };
+  
+      try {
+        const response = await axios.post('/takeBackFriendRequest', dataToSend);
+        
+        if(response.data === "Friend request taken back successfully"){
+          props.updateFriendRequestsSent(event.target.id);
+        }else{
+          alert(response.data);
+        }
+      } catch (error) {
+        console.error('Error taking back friend request:', error);
+      }
+  }
+
   return (
     <div className='sendFriendRequestsTab'>
       <div className='sendFriendRequestsTabInput'>
@@ -67,7 +91,7 @@ function Sendfriendrequeststab(props) {
               <h3>{friendRequestSent.username}</h3>
             </div>
             <div className="takeRequestBack">
-              <h3>Take Back</h3>
+              <h3 onClick={takeBackFriendRequest} >Take Back</h3>
             </div>
           </div>
         )) : null}

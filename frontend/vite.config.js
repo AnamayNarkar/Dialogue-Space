@@ -11,6 +11,7 @@ export default defineConfig({
       '/sendMessage': 'http://localhost:3000/',
       '/getLatestUserData': 'http://localhost:3000/',
       '/sendFriendRequest': 'http://localhost:3000/',
+      '/takeBackFriendRequest': 'http://localhost:3000/',
       '/acceptFriendRequest': 'http://localhost:3000/',
       '/rejectFriendRequest': 'http://localhost:3000/',
     }
